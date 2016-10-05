@@ -2,15 +2,31 @@ import React, { PropTypes } from 'react'
 import Card from 'material-ui/Card'
 import Radium from 'radium'
 import {Link} from 'react-router'
+import CourseActions from './CourseActions.js'
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 class Course extends React.Component {
+  constructor(props){
+    super(props);
+    this.state={
+      likes:this.props.course.likes
+    }
+  }
+  addlikes(){
+    this.setState({
+      likes:this.state.likes+1
+    });
+  }
   render () {
     let styles={
       all:{
         margin: '0 2rem 4rem',
         flexBasis: '100%',
-        '@media (min-width: 600px)': {
+        '@media (min-width: 600px) and (max-width:975px)': {
+          flexBasis: 'calc(50% - 4rem)'
+        },
+        '@media (min-width: 975px)': {
           flexBasis: 'calc(33.3% - 4rem)'
-        }
+        },
       },
       imgWrap: {
         position: 'relative'
@@ -26,9 +42,13 @@ class Course extends React.Component {
         <Card>
           <div style={styles.imgWrap}>
             <Link to={`/view/${course.id}`}>
-            <img src={course.image} alt={course.name} style={styles.img} />
+              <img src={course.image} alt={course.name} style={styles.img} />
             </Link>
+            <CSSTransitionGroup transitionName="like" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
+              <span key={this.state.likes} className="likes-heart">{this.state.likes}</span>
+            </CSSTransitionGroup>
           </div>
+          <CourseActions course={course} likes={this.state.likes} addlikes={this.addlikes.bind(this)}/>
         </Card>
       </div>
     )
