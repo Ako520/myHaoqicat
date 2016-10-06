@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import courses from '../data/courses.js'
+// import courses from '../data/courses.js'
 import Course from './Course.js'
 
 class ShowCourse extends React.Component {
@@ -19,13 +19,13 @@ class ShowCourse extends React.Component {
   render () {
     let styles=this.getStyles();
     const {courseId}=this.props.params;
-    const index = courses.findIndex((c) => c.id === courseId);
-    const selectedCourse = courses[index];
+    const index = this.props.courses.findIndex((c) => c.id === courseId);
+    const selectedCourse = this.props.courses[index];
     return(
       <div>
         <div style={styles.top}>
           <div style={styles.container}>
-            <Course course={selectedCourse} />
+            <Course course={selectedCourse} increment={this.props.increment}/>
           </div>
         </div>
       </div>

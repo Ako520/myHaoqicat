@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import courses from '../data/courses.js'
+// import courses from '../data/courses.js'
 import Course from './Course.js'
 
 class Courses extends React.Component {
@@ -16,9 +16,9 @@ class Courses extends React.Component {
     }
     return(
       <div style={styles.all}>
-        {courses.map((item,i) => {
+        {this.props.courses.map((item,i) => {
           return(
-            <Course key={i} course={item}/>
+            <Course key={i} increment={this.props.increment} course={item}/>
           )
         })}
       </div>

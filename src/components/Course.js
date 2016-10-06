@@ -5,17 +5,17 @@ import {Link} from 'react-router'
 import CourseActions from './CourseActions.js'
 import CSSTransitionGroup from 'react-addons-css-transition-group';
 class Course extends React.Component {
-  constructor(props){
-    super(props);
-    this.state={
-      likes:this.props.course.likes
-    }
-  }
-  addlikes(){
-    this.setState({
-      likes:this.state.likes+1
-    });
-  }
+  // constructor(props){
+  //   super(props);
+  //   this.state={
+  //     likes:this.prcourse.likes
+  //   }
+  // }
+  // addlikes(){
+  //   this.setState({
+  //     likes:course.likes+1
+  //   });
+  // }
   render () {
     let styles={
       all:{
@@ -45,10 +45,10 @@ class Course extends React.Component {
               <img src={course.image} alt={course.name} style={styles.img} />
             </Link>
             <CSSTransitionGroup transitionName="like" transitionEnterTimeout={500} transitionLeaveTimeout={500}>
-              <span key={this.state.likes} className="likes-heart">{this.state.likes}</span>
+              <span key={course.likes} className="likes-heart">{course.likes}</span>
             </CSSTransitionGroup>
           </div>
-          <CourseActions course={course} likes={this.state.likes} addlikes={this.addlikes.bind(this)}/>
+          <CourseActions course={course}  increment={this.props.increment}/>
         </Card>
       </div>
     )

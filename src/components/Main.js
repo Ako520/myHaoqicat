@@ -30,7 +30,7 @@ class Main extends React.Component {
         <header style={styles.header}>
           <div style={styles.logo}>Haoqicat</div>
         </header>
-        {this.props.children}
+        { React.cloneElement(this.props.children, this.props) }
       </StyleRoot>
     )
   }

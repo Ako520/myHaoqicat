@@ -88,3 +88,52 @@ svg的大小由 宽高 决定，
 ##   background-size: contain 以及 pointer-events: none
 background-size: contain; 将图片拓展到把图像图像扩展至最大尺寸，以使其宽度和高度完全适应内容区域。
 pointer-events: none; 顾名思意，就是鼠标事件拜拜的意思。元素应用了该CSS属性，链接啊，点击啊什么的都变成了“浮云牌酱油”。
+
+## Radium里的StyleRoot组件
+用来使用media query等inline-style 需要在top-level的组件上加❤
+```html
+import Radium, { StyleRoot } from 'radium';
+import Courses from './Courses';
+
+<StyleRoot style={styles.root}>
+  <header style={styles.header}>
+    <div style={styles.logo}>Haoqicat</div>
+  </header>
+  <Courses />
+</StyleRoot>
+
+export default Radium(Main);
+```
+
+## React.cloneElement把top-level里的this.props.children替换掉的方法
+```html
+//从
+return(
+  <StyleRoot style={styles.all}>
+    <header style={styles.header}>
+      <div style={styles.logo}>Haoqicat</div>
+    </header>
+    {this.props.children}
+  </StyleRoot>
+)
+}
+
+//变为
+return(
+  <StyleRoot style={styles.all}>
+    <header style={styles.header}>
+      <div style={styles.logo}>Haoqicat</div>
+    </header>
+    { React.cloneElement(this.props.children, this.props) }
+  </StyleRoot>
+)
+}
+//这样，才能在 Courses 和 ShowCourse 组件中通过代码 this.props.courses 获取 store 中的 courses 状态值。
+
+
+```
+## 名词及作用
+reducers/courses.js不懂
+compinens/App.js 1 bindActionCreators干嘛的
+compinens/App.js 2 connect干嘛的
+compinens/App.js 3 import * as actionCreators from '../action/index.js';干嘛的

@@ -43,22 +43,23 @@ class CourseActions extends React.Component {
         width: '18px',
         height: '18px',
         paddingRight: '6px',
-        color:"#4c5765"
+        color:"#4c5765",
+        border:"3px red solid"
       }
     }
     return(
       <div style={styles.all}>
         <div style={styles.button}>
-          <IconButton tooltip="点赞o(*≧▽≦)ツ" onClick={this.props.addlikes} key="1">
-            <ActionThumbUp style={styles.icon}/>
+          <IconButton tooltip="点赞o(*≧▽≦)ツ" onClick={this.props.increment.bind(null, parseInt(course.id) - 1)} key="1">
+            <ActionThumbUp style={styles.icon} color="#4c5765"/>
           </IconButton>
-          <div style={styles.likes}>{this.props.likes}</div>
+          <div style={styles.likes}>{course.likes}</div>
         </div>
         <div style={styles.name}>
           {course.name}
         </div>
         <IconButton tooltip="评论一下(。-`ω´-)" style={styles.button} key="2">
-          <CommunicationComment />
+          <CommunicationComment color="#4c5765"/>
         </IconButton>
       </div>
     )

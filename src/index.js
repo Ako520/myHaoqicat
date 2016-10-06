@@ -1,18 +1,22 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Main from './components/Main.js'
+import App from './components/App.js'
 import './styles/style.css'
 // import './styles/s2.css'
 import Courses from './components/Courses.js'
 import ShowCourse from './components/ShowCourse.js'
 import { Router, Route,browserHistory,IndexRoute } from 'react-router'
+import {Provider} from 'react-redux'
+import store,{history} from './store.js'
 const router=(
-  <Router history={browserHistory}>
-    <Route path="/" component={Main}>
-      <IndexRoute component={Courses}/>
-      <Route path="/view/:courseId" component={ShowCourse}></Route>
-    </Route>
-  </Router>
+  <Provider store={store}>
+    <Router history={history}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Courses}/>
+        <Route path="/view/:courseId" component={ShowCourse}></Route>
+      </Route>
+    </Router>
+  </Provider>
 )
 
 render(router, document.getElementById('root'));
