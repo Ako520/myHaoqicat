@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react'
 import Radium from 'radium'
 import ActionThumbUp from 'material-ui/svg-icons/action/thumb-up';
+import ActionHighlightOff from 'material-ui/svg-icons/action/highlight-off';
 import CommunicationComment from 'material-ui/svg-icons/communication/comment';
 import IconButton from 'material-ui/IconButton';
+import {Link} from 'react-router'
 
 class CourseActions extends React.Component {
   render () {
@@ -13,7 +15,7 @@ class CourseActions extends React.Component {
         padding: '1.5rem',
         display:"flex",
         flexDirection: 'column',
-        '@media (min-width: 600px)': {
+        '@media (min-width: 426px)': {
           flexDirection: 'row',
           alignItems: 'center',
           justifyContent: 'space-between'
@@ -32,7 +34,8 @@ class CourseActions extends React.Component {
         backgroundColor: '#f2f4f6',
         color: '#4c5765',
         display:"flex",
-        alignItems:"center"
+        alignItems:"center",
+        textDecoration:"none"
       },
       likes:{
         width:"20px",
@@ -40,27 +43,28 @@ class CourseActions extends React.Component {
         fontSize:"1.4rem"
       },
       icon: {
-        width: '18px',
-        height: '18px',
-        paddingRight: '6px',
+        width: '24px',
+        height: '24px',
         color:"#4c5765",
-        border:"3px red solid"
       }
     }
     return(
       <div style={styles.all}>
         <div style={styles.button}>
-          <IconButton tooltip="点赞o(*≧▽≦)ツ" onClick={this.props.increment.bind(null, parseInt(course.id) - 1)} key="1">
-            <ActionThumbUp style={styles.icon} color="#4c5765"/>
+          <IconButton tooltip="点赞o(*≧▽≦)ツ" iconStyle={styles.icon} onClick={this.props.increment.bind(null, parseInt(course.id) - 1)} key="1">
+            <ActionThumbUp  color="#4c5765"/>
           </IconButton>
           <div style={styles.likes}>{course.likes}</div>
         </div>
         <div style={styles.name}>
           {course.name}
         </div>
-        <IconButton tooltip="评论一下(。-`ω´-)" style={styles.button} key="2">
-          <CommunicationComment color="#4c5765"/>
-        </IconButton>
+        <Link to={`/view/${course.id}`} style={styles.button}>
+          <IconButton tooltip="评论一下(。-`ω´-)"  iconStyle={styles.icon} style={styles.button} key="2">
+            <CommunicationComment color="#4c5765"/>
+          </IconButton>
+          <div style={styles.likes}>{this.props.comments ? this.props.comments.length.toString():"0"}</div>
+        </Link>
       </div>
     )
   }

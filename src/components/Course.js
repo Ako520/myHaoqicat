@@ -21,7 +21,7 @@ class Course extends React.Component {
       all:{
         margin: '0 2rem 4rem',
         flexBasis: '100%',
-        '@media (min-width: 600px) and (max-width:975px)': {
+        '@media (min-width: 640px) and (max-width:975px)': {
           flexBasis: 'calc(50% - 4rem)'
         },
         '@media (min-width: 975px)': {
@@ -48,7 +48,7 @@ class Course extends React.Component {
               <span key={course.likes} className="likes-heart">{course.likes}</span>
             </CSSTransitionGroup>
           </div>
-          <CourseActions course={course}  increment={this.props.increment}/>
+          <CourseActions course={course}  comments={this.props.comments} increment={this.props.increment}/>
         </Card>
       </div>
     )

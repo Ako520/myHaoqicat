@@ -18,7 +18,7 @@ class Courses extends React.Component {
       <div style={styles.all}>
         {this.props.courses.map((item,i) => {
           return(
-            <Course key={i} increment={this.props.increment} course={item}/>
+            <Course key={i} increment={this.props.increment} comments={this.props.comments[item.id]} course={item}/>
           )
         })}
       </div>
