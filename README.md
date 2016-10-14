@@ -137,3 +137,6 @@ reducers/courses.js不懂
 compinens/App.js 1 bindActionCreators干嘛的
 compinens/App.js 2 connect干嘛的
 compinens/App.js 3 import * as actionCreators from '../action/index.js';干嘛的
+
+## import * as actionCreators from '../action/index.js';
+作用是把index.js里所有所有的export 全拿出来并作一个actionCreators对象,这个对象里面包含了所有的export!
